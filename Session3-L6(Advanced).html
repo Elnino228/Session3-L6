@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img id="nobita" src="images/1.png"
+     style="position: absolute;left: 0;top: 0;" height="100" width="80"/>
+<p id="position"  style="position: absolute;left: 0;top: 80px;">show position here.</p>
+<script>
+    let ima=document.getElementById('nobita');
+    ima.addEventListener('keydown',doReady());
+    let pos=document.getElementById("position");
+    pos.addEventListener("keydown",doUpdatePos());
+
+    function upArrowPressed() {
+        let elementImg = document.getElementById("nobita");
+        let elementP = document.getElementById("position");
+        elementImg.style.top = parseInt(elementImg.style.top) - 5 + 'px';
+        elementP.style.top = parseInt(elementP.style.top) - 5 + 'px';
+    }
+
+    function downArrowPressed() {
+        let elementImg = document.getElementById("nobita");
+        let elementP = document.getElementById("position");
+        elementImg.style.top = parseInt(elementImg.style.top) + 5 + 'px';
+        elementP.style.top = parseInt(elementP.style.top) + 5 + 'px';
+    }
+
+    function rightArrowPressed() {
+        let elementImg = document.getElementById("nobita");
+        let elementP = document.getElementById("position");
+        elementImg.style.left = parseInt(elementImg.style.left) + 5 + 'px';
+        elementP.style.left = parseInt(elementP.style.left) + 5 + 'px';
+    }
+
+    function leftArrowPressed() {
+        let elementImg = document.getElementById("nobita");
+        let elementP = document.getElementById("position");
+        elementImg.style.left = parseInt(elementImg.style.left) - 5 + 'px';
+        elementP.style.left = parseInt(elementP.style.left) - 5 + 'px';
+    }
+
+    function moveSelection(evt) {
+        switch (evt.keyCode) {
+            case 37:
+                leftArrowPressed();
+                break;
+            case 39:
+                rightArrowPressed();
+                break;
+
+            case 38:
+                upArrowPressed();
+                break;
+            case 40:
+                downArrowPressed();
+                break;
+
+
+        }
+    }
+    function doReady() {
+        window.addEventListener('keydown',moveSelection);
+    }
+    function doUpdatePos() {
+        window.addEventListener('keydown',updatePosition);
+    }
+    function updatePosition() {
+        document.getElementById("position").innerText=document.getElementById("nobita").style.left +" "
+            + document.getElementById("nobita").style.top;
+    }
+
+</script>
+</body>
+</html>
